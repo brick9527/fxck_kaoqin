@@ -7,7 +7,7 @@ module.exports = {
   register: async function (server, options) {
     const scheduleCrawler = new ProcessFactory({
       processName: 'scheduleCrawler',
-      main: path.join(__dirname, '../../process/test.js'),
+      main: path.join(__dirname, '../../process/schedule_crawler/index.js'),
     });
     scheduleCrawler.run();
   }

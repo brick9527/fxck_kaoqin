@@ -10,10 +10,14 @@ class ProcessFactory {
    * @property {String} processName - 进程名
    * @property {String} main - 入口文件
    * @property {Array<String>} args - 启动进程所带参数
+   * @property {Number} maxRestart - 最大重启次数
    */
-  constructor (param) {
+  constructor ({ processName, main, args, maxRestart = 10 } = {}) {
     this.state = {
-      ...param,
+      processName,
+      main,
+      args,
+      maxRestart,
       lock: false,
       restartCount: 0
     };
@@ -26,11 +30,18 @@ class ProcessFactory {
   }
 
   run () {
+    // 检查进程是否处于锁定状态
     if (this.state.lock) {
       logger.warn(`process ${this.state.processName} is locked. ignore create.`);
       return;
     }
     this.state.lock = true;
+
+    // 检查进程重启次数是否超过限制
+    if (this.state.restartCount >= this.state.maxRestart) {
+      logger.warn(`process ${this.state.processName} restart max times.`);
+      return;
+    }
 
     const initProcessArgs = {
       env: {
