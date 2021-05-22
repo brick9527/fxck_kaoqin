@@ -1,0 +1,32 @@
+{
+  "name": "hapi-project-template",
+  "version": "0.1.0",
+  "description": "hapi project template",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node src/index.js",
+    "lint": "node_modules/.bin/eslint src",
+    "prepare": "node_modules/.bin/husky install"
+  },
+  "author": "brick9527",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/boom": "^9.1.2",
+    "@hapi/hapi": "^20.1.2",
+    "fd-object-merge": "0.0.2",
+    "joi": "^17.4.0",
+    "js-yaml": "^4.1.0",
+    "log4js": "^6.3.0",
+    "mongoose": "^5.12.7",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "husky": "^6.0.0"
+  }
+}

@@ -1,0 +1,27 @@
+# server配置
+server:
+  port: 3000 # 端口
+  jwtSecret: 'your_secret' # jwt加密/解密的秘钥
+  passwordSalt: 'your_salt' # 用户密码加密的盐值
+
+# mongo配置
+mongodb:
+  host: '127.0.0.1' # 主机
+  port: 27017 # 端口
+  db: 'test' # 所连接的database
+  user: 'test' # 用户名
+  password: 'your_password' # 密码
+  autoReconnect: true # 是否断线重连
+  reconnectTries: 10 # 最大重连数
+  reconnectInterval: 1000 # 重连间隙（毫秒）
+  poolSize: 600 # 连接池数量
+  hasAuthDB: true # 是否有认证的DB
+
+# redis配置
+redis:
+  host: '127.0.0.1' # 主机
+  port: 6379 # 端口
+  password: 'your_password' # 密码
+  totalRetryTime: 3600000 # redis重连超时时间，1h
+  attempt: 10 # redis最大重连次数
+  minRetryDelay: 3000 # redis重连最小间隙
