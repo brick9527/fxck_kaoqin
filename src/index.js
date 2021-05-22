@@ -9,7 +9,7 @@ const logger = require('./utils/log4js').getLogger('server');
 
 const start = async () => {
   // 设置主进程名称
-  process.env.proc_name = 'server';
+  process.env.processName = 'server';
 
   // 实例化一个server，并指定server的端口号
   const { server: { port } } = config;
@@ -37,7 +37,7 @@ const start = async () => {
     return h.continue;
   });
 
-  logger.info(`${process.env.proc_name} is running at ${server.info.uri}`);
+  logger.info(`${process.env.processName} is running at ${server.info.uri}`);
 };
 
 start();

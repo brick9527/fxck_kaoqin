@@ -1,4 +1,5 @@
 const { fork } = require('child_process');
+const objectMerge = require('fd-object-merge');
 
 const logger = require('../../utils/log4js').getLogger('process_factory');
 
@@ -31,11 +32,14 @@ class ProcessFactory {
     }
     this.state.lock = true;
 
-    if (this.state.args) {
-      this.process = fork(this.state.main, { execArgv: this.state.args });
-    } else {
-      this.process = fork(this.state.main);
-    }
+    const initProcessArgs = {
+      env: {
+        processName: this.state.processName,
+      }
+    };
+    const processArgs = objectMerge(initProcessArgs, this.state.args);
+
+    this.process = fork(this.state.main, processArgs);
 
     this.state.processName = this.state.processName || this.process.pid;
 

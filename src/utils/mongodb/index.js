@@ -9,7 +9,7 @@ const model = require('../../models');
  * @returns
  */
 async function createMongoClient () {
-  const processName = process.env.proc_name || process.pid;
+  const processName = process.env.processName || process.pid;
 
   try {
     const { mongodb } = config;
